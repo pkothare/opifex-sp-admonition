@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "admonition-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/admonition/AdmonitionWebPart.js",
+          "manifest": "./src/webparts/admonition/AdmonitionWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "AdmonitionWebPartStrings": "lib/webparts/admonition/loc/{locale}.js"
+  }
+}
