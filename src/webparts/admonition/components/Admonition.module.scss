@@ -3,19 +3,19 @@
 .admonition {
   background-color: #fed9cc;
   display: grid;
-  grid-template-columns: 20px 1fr;
+  grid-template-columns: 28px 1fr;
   grid-gap: 4px;
   padding: 16px;
 }
 
 @mixin heading {
   grid-row: 1;
-  line-height: 28px;  
+  line-height: 31px;  
 }
 
 .alertIcon {
   @include heading;
-  @include ms-fontSize-18;
+  @include ms-fontSize-24;
   color: #d83b01;
   grid-column: 1;
   vertical-align: bottom;
@@ -23,16 +23,17 @@
 
 .alertTitle {
   @include heading;
-  @include ms-fontSize-20;
   @include ms-fontWeight-semibold;
+  @include ms-fontSize-24;
   grid-column: 2;
 }
 
 
 .alertBody {
+  @include ms-fontWeight-regular;
+  @include ms-fontSize-18;
   grid-row: 2;
   grid-column: 1 / span 2;
-  @include ms-fontWeight-regular;
-  @include ms-fontSize-16;
+  line-height: 1.4;
 }
 
