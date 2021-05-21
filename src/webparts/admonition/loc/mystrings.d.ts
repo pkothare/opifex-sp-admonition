@@ -1,7 +1,9 @@
 declare interface IAdmonitionWebPartStrings {
   PropertyPaneDescription: string;
-  BasicGroupName: string;
+  IconFieldLabel: string;
+  TitleFieldLabel: string;
   DescriptionFieldLabel: string;
+
 }
 
 declare module 'AdmonitionWebPartStrings' {
