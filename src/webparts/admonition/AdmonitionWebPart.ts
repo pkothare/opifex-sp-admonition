@@ -5,7 +5,7 @@ import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
 } from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+import { BaseClientSideWebPart, IWebPartPropertiesMetadata } from '@microsoft/sp-webpart-base';
 
 import * as strings from 'AdmonitionWebPartStrings';
 import Admonition from './components/Admonition';
@@ -13,6 +13,8 @@ import { IAdmonitionProps } from './components/IAdmonitionProps';
 import { initializeIcons } from '@fluentui/font-icons-mdl2';
 
 export interface IAdmonitionWebPartProps {
+  icon: string;
+  title: string;
   description: string;
 }
 
@@ -22,6 +24,8 @@ export default class AdmonitionWebPart extends BaseClientSideWebPart<IAdmonition
     const element: React.ReactElement<IAdmonitionProps> = React.createElement(
       Admonition,
       {
+        icon: this.properties.icon,
+        title: this.properties.title,
         description: this.properties.description
       }
     );
@@ -38,6 +42,13 @@ export default class AdmonitionWebPart extends BaseClientSideWebPart<IAdmonition
     return Version.parse('1.0');
   }
 
+  protected get propertiesMetadata(): IWebPartPropertiesMetadata {
+    return {
+      'title': { isSearchablePlainText: true },
+      'description': { isHtmlString: true }
+    };
+  }
+
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
     return {
       pages: [
@@ -47,10 +58,17 @@ export default class AdmonitionWebPart extends BaseClientSideWebPart<IAdmonition
           },
           groups: [
             {
-              groupName: strings.BasicGroupName,
               groupFields: [
+                PropertyPaneTextField('icon', {
+                  label: strings.IconFieldLabel
+                }),
+                PropertyPaneTextField('title', {
+                  label: strings.TitleFieldLabel
+                }),
                 PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                  label: strings.DescriptionFieldLabel,
+                  multiline: true,
+                  rows: 10
                 })
               ]
             }
