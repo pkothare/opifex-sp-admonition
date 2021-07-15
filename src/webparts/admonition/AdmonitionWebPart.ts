@@ -24,9 +24,13 @@ export default class AdmonitionWebPart extends BaseClientSideWebPart<IAdmonition
     const element: React.ReactElement<IAdmonitionProps> = React.createElement(
       Admonition,
       {
-        icon: this.properties.icon,
-        title: this.properties.title,
-        description: this.properties.description
+        icon: this.properties.icon || 'Warning',
+        title: this.properties.title || 'Title',
+        description: this.properties.description || '',
+        onTextChange: (text: string): string => {
+          this.properties.description = text;
+          return text;
+        }
       }
     );
 
@@ -64,11 +68,6 @@ export default class AdmonitionWebPart extends BaseClientSideWebPart<IAdmonition
                 }),
                 PropertyPaneTextField('title', {
                   label: strings.TitleFieldLabel
-                }),
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel,
-                  multiline: true,
-                  rows: 10
                 })
               ]
             }
